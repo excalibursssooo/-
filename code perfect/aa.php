@@ -13,7 +13,7 @@ for($i=0; $i<$row; $i++) {
     $query = $query . $cname . ',';
     array_push($columns, $cname);
 }
-$query = substr($query, 0, strlen($query)-1);   // 去掉,号
+$query = substr($query, 0, strlen($query)-1);   // 去掉末尾逗号
 $query = $query . ') values (';
 for($i=0; $i<count($columns); $i++) {
     $cname = $columns[$i];
