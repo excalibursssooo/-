@@ -1,6 +1,6 @@
 <?php 
     define('HOST','localhost');
-    define('USER','blog');
+    define('USER','root');
     define('PASS','');
     define('DBNAME','blog');
 
