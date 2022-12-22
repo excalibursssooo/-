@@ -14,16 +14,23 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 
-<body><?php
-        include("conn.php");
-        $id = $_GET["bagid"];
-        $sql = "SELECT rented FROM bags WHERE Bag_ID = $id";
-        $res = mysqli_query($conn, $sql);
-        $rented = mysqli_fetch_array($res)[0];
-        if ($rented == 1) {
-            echo "<script>window.alert('商品已被借走,请返回');history.back(1);</script>";
-        }
-        ?>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="https://cdn.imgcn.top/20210118/d8dab14a9c2aae92167cb0b4d14d6098.png!logo" width="30" height="30" class="d-inline-block align-top" alt="">
+            Luxury Shop
+        </a>
+    </nav>
+    <?php
+    include("conn.php");
+    $id = $_GET["bagid"];
+    $sql = "SELECT rented FROM bags WHERE Bag_ID = '$id'";
+    $res = mysqli_query($conn, $sql);
+    $rented = mysqli_fetch_array($res)[0];
+    if ($rented == 1) {
+        echo "<script>window.alert('商品已被借走,请返回');history.back(1);</script>";
+    }
+    ?>
     <div style='margin:0 auto;width:500px;height:500px'>
         <form action="sub.php" method="GET" margin: 0 auto class="was-validated">
             <div class="form-group">

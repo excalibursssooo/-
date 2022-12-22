@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-100">
+<html lang="zh" class="h-100">
 
 <head>
 	<meta charset="utf-8">
@@ -9,7 +9,7 @@
 	<meta name="generator" content="Hugo 0.101.0">
 	<title>Sticky Footer Navbar Template · Bootstrap v4.6</title>
 
-	<link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/sticky-footer-navbar/">
+	<!-- <link rel="canonical" href="https://getbootstrap.com/docs/4.6/examples/sticky-footer-navbar/"> -->
 
 
 
@@ -35,12 +35,14 @@
 </head>
 
 <body>
+	<!--导航栏 -->
 	<nav class="navbar navbar-light bg-light">
 		<a class="navbar-brand" href="#">
 			<img src="https://cdn.imgcn.top/20210118/d8dab14a9c2aae92167cb0b4d14d6098.png!logo" width="30" height="30" class="d-inline-block align-top" alt="">
 			Luxury Shop
 		</a>
 	</nav>
+
 	<div class="row">
 		<div class="col-3">
 			<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -65,7 +67,7 @@
 									$res = mysqli_query($connect, $sql);
 									$i = 0;
 									while ($row = mysqli_fetch_array($res)) {
-										echo "<input class='form-check-input'type = 'checkbox' name = 'manus[]' id='inlineCheckbox$i' value='$row[0]'><label class='form-check-label' for='inlineCheckbox$i'>" . $row[0] . "</label>";
+										echo "<input class='form-check-input'type = 'checkbox' name = 'manus[]' id='inlineCheckbox$i' value='$row[0]'><label class='form-check-label' for='inlineCheckbox$i'><p class='font-weight-bold'>" . $row[0] . "&nbsp&nbsp&nbsp&nbsp&nbsp</p></label>";
 										$i++;
 									}
 									echo "<button type = 'submit' class = 'btn btn-primary' style='margin-left: 20px; margin-top:10px;padding:5px'>select</button>";
@@ -113,17 +115,19 @@
 								$dbrow = mysqli_fetch_array($res);
 								if (!$dbrow) break;
 							?>
-								<div class="card" style="max-width: 450px;">
+								<div class="card" style="max-width: 300px;">
 									<img src="<?php echo $dbrow[$columns[6]]; ?>" class="figure-img img-fluid rounded" style="Max-height: 400px">
 									<div class="card-body">
 										<h5 class="card-title"><?php echo $dbrow[$columns[1]]; ?></h5>
 										<p class="card-text"><?php
-																for ($j = 2; $j < count($columns) - 1; $j++) {
-																	if ($j == 3) echo "Manufacturer: ";
-																	else if ($j == 4) echo "Price: ";
-																	else if ($j == 2) echo "Color: ";
+																for ($j = 0; $j < count($columns) - 1; $j++) {
+																	if ($j == 1) continue;
+																	if ($j == 0) echo "<b>ID:</b>";
+																	if ($j == 3) echo "<b>Manufacturer: </b>";
+																	else if ($j == 4) echo "<b>Price: </b>";
+																	else if ($j == 2) echo "<b>Color: </b>";
 																	else if ($j == 5) {
-																		if ($dbrow[$columns[$j]] == 0) echo "Availabel";
+																		if ($dbrow[$columns[$j]] == 0) echo "<b>Availabel</b>";
 																		else echo "Unavailabel";
 																	}
 																	if ($j != 5)
@@ -142,14 +146,13 @@
 				<div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 					<table class="table">
 						<?php
-						require_once "conn.php";
+
 						$sql = "show columns from customers "; //展示对应表的列名
-						$res = $conn->query($sql);
+						$res = $connect->query($sql);
 						$columns = array(); //用来记录列名
 						if (!$res)
 							die("未找到该表");
 						$row = mysqli_num_rows($res);
-						//$dbrow = mysqli_fetch_array($res);
 						?>
 						<thead class="thead-dark">
 							<tr>
@@ -247,17 +250,11 @@
 								<div class="input-group is-invalid">
 									<input type="text" class="form-control" id="exampleInputEmail1" name="Cus_ID" required></input>
 								</div>
-								<div class="invalid-feedback">
-									Please enter your ID.
-								</div>
 							</div>
 							<div class="mb-3">
 								<label for="validationTextarea">请输入包的ID</label>
 								<div class="input-group is-invalid">
 									<input type="text" class="form-control" id="exampleInputEmail1" name="Bag_ID" required></input>
-								</div>
-								<div class="invalid-feedback">
-									Please enter BagID.
 								</div>
 							</div>
 							<!-- Button trigger modal -->

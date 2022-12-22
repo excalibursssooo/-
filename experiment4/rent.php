@@ -10,6 +10,12 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="https://cdn.imgcn.top/20210118/d8dab14a9c2aae92167cb0b4d14d6098.png!logo" width="30" height="30" class="d-inline-block align-top" alt="">
+            Luxury Shop
+        </a>
+    </nav>
     <table class="table">
         <thead class="thead-light">
             <tr>
